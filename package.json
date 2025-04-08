@@ -1,0 +1,25 @@
+{
+  "name": "chess.com",
+  "version": "1.0.0",
+  "description": "A replica of chess dot com",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brohan2/Chess.com.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brohan2/Chess.com/issues"
+  },
+  "homepage": "https://github.com/brohan2/Chess.com#readme",
+  "dependencies": {
+    "chess.js": "^1.1.0",
+    "express": "^5.1.0",
+    "socket.io": "^4.8.1"
+  }
+}
