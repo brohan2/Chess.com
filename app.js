@@ -23,14 +23,28 @@ app.get('/',(req,res)=>{
 
 io.on("connection",(unique)=>{
     console.log("unique")
-    unique.on("Rohan",()=>{
-        io.emit("Rohan giving")
-        console.log("Rohan")
+    if(!players.white){
+        players.white = unique.id;
+        unique.emit("playerRole","w");
+    }
+    else if(!players.black){
+        players.black = unique.id;
+        unique.emit("playerRole","b");
+    }
+    else{
+        unique.emit("spectator")
+    }
+
+    unique.on("disconnect",()=>{
+        if(unique.id==players.white){
+            delete players.white
+        }
+        else if(unique.id=players.black){
+            delete players.black
+        }
     })
-unique.on("disconnect",()=>{
-    console.log("Disconnected")
 })
-})
+
 
 
 server.listen(3000,()=>{
