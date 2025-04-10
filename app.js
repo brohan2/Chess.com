@@ -43,6 +43,25 @@ io.on("connection",(unique)=>{
             delete players.black
         }
     })
+    unique.on("move",(move)=>{
+        try{
+            if(chess.turn()=='w' && socket.id!=players.white) return;
+            if(chess.turn()=='b' && socket.id != players.black) return;
+            const result = chess.move(move);
+            if(result){
+                currentPlayer = chess.turn()
+                unique.emit("move",move )
+                unique.emit("boardState",chess.fen())
+            }
+            else{
+                console.log("Invalid move "+move)
+                unique.emit("Invalid move", move)
+            }
+        }catch(err){
+            console.log(err)
+            unique.emit("Invalid move ", move)
+        }
+    })
 })
 
 
